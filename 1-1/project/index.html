@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    <button onclick="doTask()">点击我看控制台任务</button>
+    <script>
+        
+        var createTask = returnVal => {
+            return curval => {
+                var count = 0
+                for(var i = 0; i < 50000; i++){
+                    count = i+count-1000+999
+                }
+                console.log(curval,count,Date.now())
+                return returnVal 
+            }
+        }
+        function doTask(){
+            console.log('dotask', Date.now())
+            var promise = new Promise((resolve, reject)=>{
+                resolve('doTask1')
+            }).then(createTask('doTask2')).then(createTask('doTask3')).then(createTask('last'))
+            setTimeout(()=>{
+                promise.then(createTask())
+            },1000)
+        }
+        
+    </script>
+</body>
+</html>
