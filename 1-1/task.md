@@ -51,7 +51,7 @@ doIt()
 
 ### 二、基于一下代码完成下面的四个练习
 
-<img src="./images/\image-20200705111944456.png" alt="image-20200705111944456" style="zoom:80%;" />
+<img src="./images/image-20200705111944456.png" alt="image-20200705111944456" style="zoom:80%;" />
 
 
 #### 练习1：使用组合函数fp.flowRight()重新实现下面这个函数
@@ -75,6 +75,7 @@ let isFirstInStock = fp.flowRight(fp.prop('in_stock'), fp.first)
 <img src="./images/\image-20200705112515467.png" alt="image-20200705112515467" style="zoom:30%;" />
 
 **答：**
+
 ``` javascript
 let averageDollarValue = fp.flowRight(_average, fp.map(function(car){
     return car.dollar_value
