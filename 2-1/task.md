@@ -43,5 +43,57 @@
 
 最终将录制的视频或说明文档和代码统一提交至作业仓库。
 
+#### 概述脚手架实现过程 
+- 在package.json 中添加一个bin 字段，指向脚手架的入口文件 cli.js
+- 在cli.js 的头部添加 #!/usr/bin/env node, 来表示这个是脚手架入口文件
+- 在脚手架中添加模板文件，在cli.js 中的添加复制模板到当前目录的功能
+
+#### 用gulp 实现自动化/ 用grunt 实现自动化
+
+
+** 实现步骤**
+首先需要分操作，分为在开发中运行，和打包上线运行
+
+**开发中：** 
+- 使用模板编译html
+- 使用babel 编译es6
+-  编译scss/less 
+-  热更新，文件改变自动刷新浏览器
+
+**打包上线：**
+- 清除上次打包的文件
+- 使用模板编译html
+- 使用babel 编译es6
+-  编译scss/less 
+-  复制静态文件
+-  替换html中的块命令，把html 中node_module 的指向打包成文件
+-  压缩文件(js, css, html, image)
+-  修改html 引用压缩后的文件
+
+
+**记录要点 **
+- 使用browser-sync 的时候，发现改变文件，无法自动刷新浏览器时。
+   - gulp 中： 需要通过.pipe(bs.reload({stream: true})) 把输出流送到浏览器
+   
+   - grunt 中与watch 配合时，需要监听的时dist 文件，不是src 文件夹的文件，
+          
+          bsFiles: {
+              src : [
+                  'dist/**/*'
+              ]
+          }
+- 这里遇到一个卡了很久的点，怪我无知，一直都设置了vpn ,当时gulp-imagemin 和 grunt-contrib-imagemin 都一直下载不下来，
+需要对npm  设置proxy, 如下，在.npmrc 中设置，这里是我的vpn 的地址
+proxy=http://127.0.0.1:10809
+https-proxy=http://127.0.0.1:10809
+- grunt-usemin 的使用 是需要联合多条命令一起使用的， 单条指令无法成功（useminPrepare, concat, cssmin, uglify）,
+
+
+
+
+
+
+
+
 
 
