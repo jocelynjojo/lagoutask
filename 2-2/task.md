@@ -261,4 +261,4 @@ optimization: {
 ```javascript
 "lint": "eslint ./src/main.js"
 ```
-yarn lint 检查到main.js 有问题，证明命令正确
+yarn lint 检查到main.js 有问题，证明命令正确, 修正后上传
